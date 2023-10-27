@@ -15,10 +15,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class DroneDTO {
 	
+
     @NotBlank
     @Size(max = 100)
-	private int id;
-    @NotBlank
 	private String serialNumber;
     @NotNull
 	private DroneModel model;
