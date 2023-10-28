@@ -82,5 +82,15 @@ public class DroneService {
     	return droneDTO;
     }
     
+  public DroneDTO getDroneBySerialNumber(Integer serial_number) {
+	  Drone drone = droneRepo.getDroneByDroneSerialNUmber(serial_number);
+	  return modelMapper.map(drone,DroneDTO.class );
+  }
+  
+  public List<DroneDTO> getDroneByWeightLimit(Double weight_limit) {
+	  List<Drone> drone = droneRepo.getDroneByWeightLimit(weight_limit);
+	  return modelMapper.map(drone,new TypeToken<List<DroneDTO>>() {}.getType() );
+  }
+    
 }
 

@@ -17,10 +17,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class Medication {
 		
-	    @Id
+	 
+		@Id
 	    //@GeneratedValue(strategy = GenerationType.IDENTITY)
 	    //@NotBlank
-	    @Column(unique = true,nullable = false)
+	    //@Column(unique = true,nullable = false)
 	    @Pattern(regexp = "^[A-Z_0-9]+$", message = "Code can only contain uppercase letters, '_', and numbers")
 	    private String code;
 
@@ -28,10 +29,33 @@ public class Medication {
 	    @Pattern(regexp = "^[a-zA-Z0-9-_]+$", message = "Name can only contain letters, numbers, '-', and '_'")
 	    private String name;
 	    
-	    @Column(nullable = false)
+	    //@Column(nullable = false)
 	    private double weight;
 
 	    
-	    
+	    public String getCode() {
+			return code;
+		}
+
+		public void setCode(String code) {
+			this.code = code;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public double getWeight() {
+			return weight;
+		}
+
+		public void setWeight(double weight) {
+			this.weight = weight;
+		}
+
 
 }
