@@ -49,4 +49,12 @@ public class DroneController {
 	public List<DroneDTO> getDrone() {
 		return droneService.getAllDrones();
 	}
+	@PutMapping("/update_drone")
+	public DroneDTO updateDrone(@RequestBody DroneDTO droneDTO) {
+		return droneService.savedrone(droneDTO) ;
+	}
+	@DeleteMapping("/delete_drone")
+	public DroneDTO deleteDrone(@RequestBody DroneDTO droneDTO) {
+		return droneService.savedrone(droneDTO) ;
+	}	
 }

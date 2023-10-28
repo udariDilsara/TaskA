@@ -72,6 +72,15 @@ public class DroneService {
     	return modelMapper.map(droneList,new TypeToken<List<DroneDTO>>() {}.getType());
     }
     
-    public
+    public DroneDTO updateDrone(DroneDTO droneDTO) {
+    	droneRepo.save(modelMapper.map(droneDTO, Drone.class));
+    	return droneDTO;
+    }
+    
+    public DroneDTO deleteDrone(DroneDTO droneDTO) {
+    	droneRepo.delete(modelMapper.map(droneDTO, Drone.class));
+    	return droneDTO;
+    }
+    
 }
 
