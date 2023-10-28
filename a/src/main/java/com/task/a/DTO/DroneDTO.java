@@ -1,11 +1,6 @@
 package com.task.a.DTO;
 
 import com.task.a.Model.DroneModel;
-
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,12 +10,27 @@ import lombok.NoArgsConstructor;
 @Data
 public class DroneDTO {
 	
-
-    @NotBlank
-    @Size(max = 100)
-	private String serialNumber;
-    @NotNull
+	private int serial_number;
 	private DroneModel model;
-    @Max(value = 500, message = "Weight limit cannot exceed 500 grams")
-	private double weightLimit;
+	private double weight_limit;
+	
+	public int getSerial_number() {
+		return serial_number;
+	}
+	public void setSerial_number(int serial_number) {
+		this.serial_number = serial_number;
+	}
+	public DroneModel getModel() {
+		return model;
+	}
+	public void setModel(DroneModel model) {
+		this.model = model;
+	}
+	public double getWeight_limit() {
+		return weight_limit;
+	}
+	public void setWeight_limit(double weight_limit) {
+		this.weight_limit = weight_limit;
+	}
+
 }

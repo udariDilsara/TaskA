@@ -1,5 +1,7 @@
 package com.task.a.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,12 +23,12 @@ public class DroneController {
 	@Autowired
 	private DroneService droneService;
 	
-	@GetMapping("/get_drone")
+	/*@GetMapping("/get_drone")
 	public String getDrone() {
 		return "Drone 1";
-	}
+	}*/
 	
-	@PostMapping("/save_drones")
+	/*@PostMapping("/save_drones")
 	public String saveDrone() {
 		return "Save Drone 1";
 	}
@@ -37,11 +39,14 @@ public class DroneController {
 	@DeleteMapping("/delete_drone")
 	public String deleteDrone() {
 		return "Delete Drone 1";
-	}
+	}*/
 	
-	@PostMapping("/save_drone")
-	public boolean savedrone(@RequestBody DroneDTO droneDTO) {
-		droneService.savedrone(droneDTO);
-		return true;
+	@PostMapping("/save_drones")
+	public DroneDTO savedrone(@RequestBody DroneDTO droneDTO) {
+		return droneService.savedrone(droneDTO) ;
+	}
+	@GetMapping("/get_drones")
+	public List<DroneDTO> getDrone() {
+		return droneService.getAllDrones();
 	}
 }
