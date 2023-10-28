@@ -12,7 +12,7 @@ public interface DroneRepo extends JpaRepository<Drone, Integer> {
 	@Query(value = "SELECT * FROM DRONE WHERE SERIAL_NUMBER = ?1",nativeQuery = true)
 	Drone getDroneByDroneSerialNUmber(Integer serial_number);
 	
-	@Query(value = "SELECT * FROM DRONE WHERE WEIGHT_LIMIT = ?1",nativeQuery = true)
+	@Query(value = "SELECT * FROM DRONE WHERE WEIGHT_LIMIT = ?1 LIMIT 1",nativeQuery = true)
 	List<Drone> getDroneByWeightLimit(Double weight_limit);
 	
 }

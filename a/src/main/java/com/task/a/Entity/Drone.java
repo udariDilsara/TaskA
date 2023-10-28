@@ -1,5 +1,7 @@
 package com.task.a.Entity;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.task.a.Model.DroneModel;
 
 import jakarta.persistence.CascadeType;
@@ -7,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,8 +46,9 @@ public class Drone {
 	    private double weight_limit;
 	    
 	    
-	    @OneToMany(cascade = CascadeType.ALL)
-	    @JoinColumn(name = "drone_serial_number_fk", referencedColumnName = "serial_number")
+	    @OneToMany(fetch =FetchType.EAGER,cascade = CascadeType.ALL,mappedBy="drone")
+	    //@JoinColumn(name = "drone_serial_number_fk", referencedColumnName = "serial_number")
+	    @JsonIgnore
 	    private List <Medication> medications;
 
 	    public int getSerial_number() {

@@ -62,6 +62,8 @@ public class DroneController {
 	public DroneDTO getDroneBySerialNumber(@PathVariable Integer serial_number ) {
 		return droneService.getDroneBySerialNumber(serial_number);
 	}
+	
+	//you will get only one drone
 	@GetMapping("/get_drones_by_weight_limit/{weight_limit}")
 	public List<DroneDTO> getDroneByWeightLimit(@PathVariable Double weight_limit ) {
 		return droneService.getDroneByWeightLimit(weight_limit);

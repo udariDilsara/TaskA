@@ -64,7 +64,6 @@ public class DroneService {
         }
         return droneDTO;
 	}
-	
 
     
     public List<DroneDTO> getAllDrones(){
