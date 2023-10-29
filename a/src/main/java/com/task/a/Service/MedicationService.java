@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.task.a.DTO.DroneDTO;
 import com.task.a.DTO.MedicationDTO;
-import com.task.a.DTO.MedicationLoadRequest;
 import com.task.a.Entity.Drone;
 import com.task.a.Entity.Medication;
 import com.task.a.Exception.ResourceNotFoundException;
