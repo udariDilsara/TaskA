@@ -58,14 +58,24 @@ public class DroneController {
 	public DroneDTO deleteDrone(@RequestBody DroneDTO droneDTO) {
 		return droneService.savedrone(droneDTO) ;
 	}	
+	@DeleteMapping("/delete_drones_by_serial_number/{serial_number}")
+	public DroneDTO deleteDroneBySerialNumber(@PathVariable Integer serial_number ) {
+		return droneService.deleteDroneBySerialNumber(serial_number);
+	}
+	
 	@GetMapping("/get_drones_by_serial_number/{serial_number}")
 	public DroneDTO getDroneBySerialNumber(@PathVariable Integer serial_number ) {
 		return droneService.getDroneBySerialNumber(serial_number);
 	}
 	
-	//you will get only one drone
+	//you will get only one drone as it LIMIT=1 in QUERY
 	@GetMapping("/get_drones_by_weight_limit/{weight_limit}")
 	public List<DroneDTO> getDroneByWeightLimit(@PathVariable Double weight_limit ) {
 		return droneService.getDroneByWeightLimit(weight_limit);
+	}
+	//you will get only one drone as it LIMIT=1 in QUERY, return a serial number of that
+	@GetMapping("/get_SerialNumber_by_weight_limit/{weight_limit}")
+	public int getDroneSerialNumberByWeightLimit(@PathVariable Double weight_limit ) {
+		return droneService.getDroneSerialNumberByWeightLimit(weight_limit);
 	}
 }

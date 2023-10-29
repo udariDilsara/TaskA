@@ -90,6 +90,19 @@ public class DroneService {
 	  List<Drone> drone = droneRepo.getDroneByWeightLimit(weight_limit);
 	  return modelMapper.map(drone,new TypeToken<List<DroneDTO>>() {}.getType() );
   }
+
+
+	public DroneDTO deleteDroneBySerialNumber(Integer serial_number) {
+		  Drone drone = droneRepo.getDroneByDroneSerialNUmber(serial_number);
+		  droneRepo.delete(drone);
+		  return modelMapper.map(drone,DroneDTO.class );
+	}
+
+	//return serial_number of one drone
+	public int getDroneSerialNumberByWeightLimit(Double weight_limit) {
+		Drone drone = droneRepo.getOneDroneByWeightLimit(weight_limit);
+		return drone.getSerial_number();
+	}
     
 }
 

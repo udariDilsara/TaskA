@@ -28,30 +28,17 @@ import lombok.NoArgsConstructor;
 @Data
 public class Drone { 
 	    
-	    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-	    //@NotBlank
-	   // @Size(max = 100)
-	    //@Column(unique = true,nullable = false)
 		@Id	
-		//@GeneratedValue(strategy = GenerationType.TABLE)
-	    //@Column( unique = true, nullable = false, length = 100)
+	    @Column( unique = true, nullable = false, length = 100)
 	    private int serial_number;
 
-
-		//@NotNull
-	    //@Column
 	    @Enumerated(EnumType.STRING)
 	    private DroneModel model;
 
-	    //@Transient
-	    //@Max(value = 500, message = "Weight limit cannot exceed 500 grams")
 	    private double weight_limit;
 	    
 	    
 	    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "drone")
-	    //@JoinColumn(name = "drone_serial_number_fk", referencedColumnName = "serial_number")
-	    //@JsonIgnore
-	    //@JsonManagedReference
 	    private List <Medication> medications = new ArrayList<>();
 	    
 	    
@@ -80,7 +67,6 @@ public class Drone {
 			this.weight_limit = weight_limit;
 		}
 		
-		//@JsonManagedReference
 		public List<Medication> getMedications() {
 			return medications;
 		}
@@ -88,9 +74,5 @@ public class Drone {
 		public void setMedications(List<Medication> medications) {
 			this.medications = medications;
 		}
-
-
-
 	    
-
 }

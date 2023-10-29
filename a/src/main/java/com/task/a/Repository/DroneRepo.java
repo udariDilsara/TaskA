@@ -15,4 +15,6 @@ public interface DroneRepo extends JpaRepository<Drone, Integer> {
 	@Query(value = "SELECT * FROM DRONE WHERE WEIGHT_LIMIT = ?1 LIMIT 1",nativeQuery = true)
 	List<Drone> getDroneByWeightLimit(Double weight_limit);
 	
+	@Query(value = "SELECT * FROM DRONE WHERE WEIGHT_LIMIT = ?1 LIMIT 1",nativeQuery = true)
+	Drone getOneDroneByWeightLimit(Double weight_limit);
 }

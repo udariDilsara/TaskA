@@ -27,16 +27,18 @@ public class MedicationController {
 	@Autowired
 	private MedicationService medicationService;
 
-	
+	//save without serial_number_fk
 	@PostMapping("/save_medications")
 	public MedicationDTO savemedication(@RequestBody MedicationDTO medicationDTO) {
 		return medicationService.savemedication(medicationDTO) ;
 	}
+	//save medication data and serial_number_fk
 	@PostMapping("/load_medication")
     public ResponseEntity<Medication> saveMedication(@RequestBody MedicationDTO medicationDTO, @RequestParam int serial_number) {
         Medication savedMedication = medicationService.loadmedication(medicationDTO, serial_number);
         return ResponseEntity.ok(savedMedication);
     }
+	//veiw all medications
 	@GetMapping("/get_medications")
 	public List<MedicationDTO> getMedication() {
 		return medicationService.getAllMedications();

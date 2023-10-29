@@ -1,9 +1,6 @@
 package com.task.a.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,17 +20,13 @@ public class Medication {
 		
 	 
 		@Id
-	    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-	    //@NotBlank
 	    @Column(length=100)
 	    @Pattern(regexp = "^[A-Z_0-9]+$", message = "Code can only contain uppercase letters, '_', and numbers")
 	    private String code;
 
-	    //@NotBlank
 	    @Pattern(regexp = "^[a-zA-Z0-9-_]+$", message = "Name can only contain letters, numbers, '-', and '_'")
 	    private String name;
-	    
-	    //@Column(nullable = false)
+
 	    private double weight;
     
 	    @ManyToOne(fetch = FetchType.EAGER)
@@ -41,7 +34,6 @@ public class Medication {
 	    @JsonIgnore
 	    private Drone drone;
 	    
-	    //@JsonBackReference
 		public Drone getDrone() {
 			return drone;
 		}
@@ -72,10 +64,6 @@ public class Medication {
 
 		public void setWeight(double weight) {
 			this.weight = weight;
-		}
-
-
-
-	    
+		}    
 
 }
