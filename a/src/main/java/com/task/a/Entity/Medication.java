@@ -1,8 +1,10 @@
 package com.task.a.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -23,7 +25,7 @@ public class Medication {
 		@Id
 	    //@GeneratedValue(strategy = GenerationType.IDENTITY)
 	    //@NotBlank
-	    //@Column(unique = true,nullable = false)
+	    @Column(length=100)
 	    @Pattern(regexp = "^[A-Z_0-9]+$", message = "Code can only contain uppercase letters, '_', and numbers")
 	    private String code;
 
@@ -33,11 +35,20 @@ public class Medication {
 	    
 	    //@Column(nullable = false)
 	    private double weight;
-	    
-	    @ManyToOne(fetch =FetchType.EAGER,cascade = CascadeType.ALL)
-	    @JoinColumn(name = "drone_serial_number_fk", referencedColumnName = "serial_number")
+    
+	    @ManyToOne(fetch = FetchType.EAGER)
+	    @JoinColumn(name = "drone_serial_number_fk")
 	    @JsonIgnore
 	    private Drone drone;
+	    
+	    //@JsonBackReference
+		public Drone getDrone() {
+			return drone;
+		}
+
+		public void setDrone(Drone drone) {
+			this.drone = drone;
+		}
 
 		public String getCode() {
 			return code;
@@ -63,13 +74,7 @@ public class Medication {
 			this.weight = weight;
 		}
 
-		public Drone getDrone() {
-			return drone;
-		}
 
-		public void setDrone(Drone drone) {
-			this.drone = drone;
-		}
 
 	    
 
