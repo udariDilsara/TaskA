@@ -71,34 +71,7 @@ public class MedicationService {
         return medicationRepo.save(medication);
 		
 	}
-   /* public MedicationLoadRequest loadMedication(MedicationLoadRequest request) {
-        try {
-            Drone drone = modelMapper.map(request.getDrone(), Drone.class);
-            //Medication medication = modelMapper.map(request.getMedication(), Medication.class);
-
-            // Save the Drone and Medication details
-            droneRepo.save(drone);
-            //medication.setDrone(drone); // Associate Medication with the Drone
-            //medicationRepo.save(medication);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // You should handle exceptions and possibly return an error response here.
-            return null;
-        }
-        return request;
-    }
-	public MedicationLoadRequest loadmedication(MedicationLoadRequest medicationLoadRequest) {
-        try {
-            Medication d = modelMapper.map(medicationLoadRequest,Medication.class);
-            
-            medicationRepo.save(d);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return medicationLoadRequest;
-
-	}*/
+ 
 
     public List<MedicationDTO> getAllMedications(){
     	List<Medication> medicationList = medicationRepo.findAll();
@@ -116,17 +89,5 @@ public class MedicationService {
     	return medicationDTO;
     }
 
-
-
-
-
-    
-    
-    //check this, this funtion need
-   /* public MedicationDTO getMedicationByCode(String code) {
-    	Medication medication = medicationRepo.getMedicationByCode(code);
-  	  	return modelMapper.map(medication,MedicationDTO.class );
-    }*/
-    
 
 }

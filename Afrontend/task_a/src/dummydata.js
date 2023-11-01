@@ -36,12 +36,6 @@ export const loadMedications = [
             name: "VitaminC",
             weight: 400,
            
-          },
-          {
-            code: 7,
-            name: "Cetirizine",
-            weight: 100,
-           
-          } 
+          }
 
 ]

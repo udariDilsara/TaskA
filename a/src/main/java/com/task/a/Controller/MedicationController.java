@@ -29,7 +29,7 @@ public class MedicationController {
 	private MedicationService medicationService;
 
 	//save without serial_number_fk
-	@PostMapping("/save_medications")
+	/*@PostMapping("/save_medications")
 	public MedicationDTO savemedication(@RequestBody MedicationDTO medicationDTO) {
 		return medicationService.savemedication(medicationDTO) ;
 	}
@@ -38,14 +38,14 @@ public class MedicationController {
     public ResponseEntity<Medication> saveMedication(@RequestBody MedicationDTO medicationDTO, @RequestParam int serial_number) {
         Medication savedMedication = medicationService.loadmedication(medicationDTO, serial_number);
         return ResponseEntity.ok(savedMedication);
-    }
+    }*/
 	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/load")
 	public Medication loadmedication(@RequestBody LoadMedDTO loadMedDTO) {
 		return medicationService.loadmedicationnew(loadMedDTO) ;
 	}
 	//veiw all medications
-	@GetMapping("/get_medications")
+	/*@GetMapping("/get_medications")
 	public List<MedicationDTO> getMedication() {
 		return medicationService.getAllMedications();
 	}

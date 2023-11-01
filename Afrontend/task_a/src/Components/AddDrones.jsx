@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const ModelEnum = {
@@ -13,7 +13,7 @@ const ModelEnum = {
   };
 
  export default function AddDrones() {
-    //let navigate =useNavigate();
+    let navigate =useNavigate();
     const [drone, setDrone] = useState(
         {
             serial_number: '',
@@ -28,7 +28,7 @@ const ModelEnum = {
      const onSubmit = async (e) =>{
         e.preventDefault();
         await axios.post("http://localhost:8085/api/v1/drone/save_drones",drone);
-        //navigate("/drone");
+        navigate("/drone");
      }
 
         
