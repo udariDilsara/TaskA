@@ -14,7 +14,7 @@ class Drone extends Component {
         <div className="card w-50">
             <div className="card-body d-flex align-items-center justify-content-center">
             
-            <Link to="/addrone">
+            <Link to="/addrones">
             <   button type="button" className="btn btn-outline-primary" >Add Drone</button>
             </Link>
             

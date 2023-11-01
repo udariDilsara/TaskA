@@ -5,7 +5,9 @@ class LoadMedication extends Component {
         super(props)
 
         this.state = {
-                medications : []
+                medications : [],
+                serial_number : '',
+                selectedMedicationCode: '',
         }
     }
     componentDidMount(){
@@ -15,6 +17,24 @@ class LoadMedication extends Component {
 
         )
     }
+    handleSelectDrone = () => {
+        // Check if a medication is selected.
+        if (this.state.selectedMedicationCode) {
+          MedicationService.addDrone(this.state.medications.weight)
+            .then((serialNumber) => {
+              this.setState({ serial_number: serialNumber });
+            })
+            .catch((error) => {
+              console.error('Error adding a drone:', error);
+            });
+        } else {
+          alert('Please select a medication first.');
+        }
+      };
+    handleMedicationSelect = (medicationCode) => {
+        this.setState({ selectedMedicationCode: medicationCode });
+      };
+    
     render() {
         return (
             <div className='container mt-5'>
@@ -37,7 +57,16 @@ class LoadMedication extends Component {
                                             <td>{medication.code}</td>
                                             <td>{medication.name}</td>
                                             <td>{medication.weight}</td>
-                                            <th><input class="form-check-input" type="radio" name="medicationRadio" value={medication.code}/></th>
+                                            <th>
+                                            <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="medicationRadio"
+                                            value={medication.code}
+                                            onClick={() => this.handleMedicationSelect(medication.code)}
+                
+                                        />
+                                            </th>
                                            
                                     </tr>
                                 )
@@ -45,8 +74,8 @@ class LoadMedication extends Component {
                         </tbody>
                     </table>
                </div>
-               <h4>Selected drone : <button type="button" className="btn btn-outline-primary">Auto selected drone</button></h4>
-               <button type="button" className="btn btn-outline-primary">Add</button>
+               <h4>Selected drone : <button type="button" className="btn btn-outline-primary" value={this.state.serial_number} onClick={this.handleSelectDrone}>{this.state.serial_number}</button></h4>
+               <button type="button" className="btn btn-outline-primary">Load</button>
             </div>
         );
     }

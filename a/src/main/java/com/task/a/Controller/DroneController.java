@@ -69,6 +69,7 @@ public class DroneController {
 	}
 	
 	//you will get only one drone as it LIMIT=1 in QUERY
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/get_drones_by_weight_limit/{weight_limit}")
 	public List<DroneDTO> getDroneByWeightLimit(@PathVariable Double weight_limit ) {
 		return droneService.getDroneByWeightLimit(weight_limit);
