@@ -8,8 +8,34 @@ export const loadMedications = [
     ,
     {
         code: 2,
-        name: "Vitamin C",
+        name: "VitaminC",
         weight: 100,
        
+      },
+      {
+        code: 3,
+        name: "Penadol",
+        weight: 200,
+       
       }
+      ,
+      {
+          code: 4,
+          name: "VitaminC",
+          weight: 300,
+         
+        }, {
+          code: 5,
+          name: "Penadol",
+          weight: 360,
+         
+        }
+        ,
+        {
+            code: 6,
+            name: "VitaminC",
+            weight: 400,
+           
+          }
+
 ]

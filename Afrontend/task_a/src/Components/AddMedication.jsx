@@ -1,34 +1,28 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const ModelEnum = {
-   
-    CRUSEREWEIGH: 'CRUSEREWEIGH',
-    HEAVYWEIGHT: 'HEAVYWEIGHT',
-    LIGHTWEIGHT: 'LIGHTWEIGHT',
-    MIDDLEWEIGHT: 'MIDDLEWEIGHT',
-    // Add more enum values as needed
-  };
+
 
  export default function AddDrones() {
-    //let navigate =useNavigate();
-    const [drone, setDrone] = useState(
+    let navigate =useNavigate();
+    const [medication, setMedication] = useState(
         {
-            serial_number: '',
-            model: ModelEnum.DEFAULT,
-            weight_limit: '',
+            code: "",
+            name: "",
+            weight: 0,
         }
     );
-    const {serial_number, model , weight_limit} = drone;
+    const {code, name , weight } = medication;
     const onInputChange = (e) => {
-        setDrone({...drone, [e.target.name]: e.target.value});
+        setMedication({...medication, [e.target.name]: e.target.value});
     };
+    const serial_number =3;
      const onSubmit = async (e) =>{
         e.preventDefault();
-        await axios.post("http://localhost:8085/api/v1/drone/save_drones",drone);
-        //navigate("/drone");
+        await axios.post('http://localhost:8085/api/v1/medication/save?serial_number',drone);
+        navigate("/");
      }
 
         
@@ -48,8 +42,8 @@ const ModelEnum = {
                 type={"number"}
                 className="form-control"
                 placeholder="Enter Drone Serial Number(Only Numbers)"
-                name="serial_number"
-                value={serial_number}
+                name="name"
+                value={name}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -57,17 +51,14 @@ const ModelEnum = {
               <label htmlFor="Model" className="form-label">
                 Model
               </label>
-              <select
-                    className="form-select"
-                    value={model}
-                     onChange={(e) => onInputChange(e)}
-                    name="model"
-                ><option >Select Model</option>
-                <option value={ModelEnum.CRUSEREWEIGHT}>CRUSEREWEIGHT</option>
-                <option value={ModelEnum.HEAVYWEIGHT}>HEAVYWEIGHT</option>
-                <option value={ModelEnum.LIGHTWEIGHT}>LIGHTWEIGHT</option>
-                <option value={ModelEnum.MIDDLEWEIGHT}>MIDDLEWEIGHT</option>
-                </select>
+              <input
+                type={"number"}
+                className="form-control"
+                placeholder="Enter Drone Serial Number(Only Numbers)"
+                name="name"
+                value={name}
+                onChange={(e) => onInputChange(e)}
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="Weight Limit" className="form-label">

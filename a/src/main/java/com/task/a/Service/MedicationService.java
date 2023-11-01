@@ -9,6 +9,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.task.a.DTO.DroneDTO;
+import com.task.a.DTO.LoadMedDTO;
 import com.task.a.DTO.MedicationDTO;
 import com.task.a.Entity.Drone;
 import com.task.a.Entity.Medication;
@@ -40,7 +41,20 @@ public class MedicationService {
         }
         return medicationDTO;
 	}
-	
+	public Medication loadmedicationnew(LoadMedDTO loadMedDTO) {
+		   Medication medication = new Medication();
+		    
+		    // Copy fields from LoadMedDTO to Medication
+		    medication.setCode(loadMedDTO.getCode());
+		    medication.setName(loadMedDTO.getName());
+		    medication.setWeight(loadMedDTO.getWeight());
+
+		   Drone drone = droneRepo.getDroneByDroneSerialNUmber(loadMedDTO.getSerial_number());
+		    // Now you can return the Medication instance
+		   medication.setDrone(drone);
+		   medicationRepo.save(medication);
+		    return medication;
+	}
 	public Medication loadmedication(MedicationDTO medicationDTO, int droneSerialNumber) {
 		 // Map MedicationDTO to Medication
         Medication medication = modelMapper.map(medicationDTO, Medication.class);
@@ -101,6 +115,8 @@ public class MedicationService {
     	medicationRepo.delete(modelMapper.map(medicationDTO, Medication.class));
     	return medicationDTO;
     }
+
+
 
 
 

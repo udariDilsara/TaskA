@@ -25,7 +25,7 @@ class Home extends Component {
                 <div className="card w-50 ">
                   <div className="card-body ">
                   <h3 class="card-title text-center">Load Medication</h3>
-                    <Link to="/loadmedication"><button type="button" class="btn btn-outline-primary ">more</button></Link>
+                    <Link to="/loadmedications"><button type="button" class="btn btn-outline-primary ">more</button></Link>
                     {/* Add content for Load Medication box */}
                   </div>
                 </div>

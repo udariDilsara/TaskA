@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { loadMedications } from "../dummydata"; 
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const ModelEnum = {
    
@@ -11,6 +12,7 @@ const ModelEnum = {
   // Add more enum values as needed
 };
 export default function LoadMedications() {
+  let navigate =useNavigate();
   const [selectedMedication, setSelectedMedication] = useState(null);
   const [selectedDrone, setSelectedDrone] = useState(
     {serial_number: 0,
@@ -18,9 +20,14 @@ export default function LoadMedications() {
     weight_limit: 0,
   });
 
+  const [loadedData, setLoadedData] = useState(null);
+
 
   const handleMedicationSelect = (medication) => {
     setSelectedMedication(medication);
+    console.log(medication);
+    handleSelectDrone ();
+    console.log(selectedDrone.serial_number);
   };
   const handleSelectDrone = async () => {
     if (selectedMedication) {
@@ -33,13 +40,16 @@ export default function LoadMedications() {
         const droneData = response.data; 
         console.log(droneData);
         if (droneData && droneData.length > 0) {
-          const firstDrone = droneData[0]; // Access the first element
-          if (firstDrone.serial_number) {
-            console.log(firstDrone.serial_number);
-            setSelectedDrone(firstDrone);
+          //const firstDrone = droneData[0]; // Access the first element
+          for (const drone of droneData) {
+          if (drone.serial_number) {
+            console.log(drone.serial_number);
+            setSelectedDrone(drone);
+            break;
           } else {
             console.error("Drone data is missing serial_number property.");
           }
+        }
         }  
       } catch (error) {
         // Handle any potential errors, such as network issues or API errors
@@ -49,8 +59,28 @@ export default function LoadMedications() {
   };
   
 
+  const handleLoad = async () => {
+    if (selectedMedication && selectedDrone) {
+      const dataToSend = {
+        code: selectedMedication.code,
+        name: selectedMedication.name,
+        weight: selectedMedication.weight,
+        serial_number: selectedDrone.serial_number,
+      };
+        console.log(dataToSend);
+      try {
+        const response = await axios.post("http://localhost:8085/api/v1/medication/load", dataToSend);
+        navigate("/");
+        setLoadedData(response.data);
+      } catch (error) {
+        console.error("Error loading medication:", error);
+      }
+    }
+  };
+
   return (
     <div className="container">
+      
       <div className="py-4">
         <table className="table border shadow">
           <thead>
@@ -78,6 +108,11 @@ export default function LoadMedications() {
                   />
                 </td>
               </tr>
+              
+                
+
+
+
             ))}
           </tbody>
         </table>
@@ -87,7 +122,10 @@ export default function LoadMedications() {
         <div><button onClick={handleSelectDrone}>Select Drone</button></div>
         <p>Selected drone: {selectedDrone ? selectedDrone.serial_number : "None selected"}</p>
         <div>
-            <button  >Load</button>
+            <button onClick={handleLoad}  >Load</button>
+        </div>
+        <div>
+          {loadedData && <p>Data Loaded: {JSON.stringify(loadedData)}</p>}
         </div>
       </div>
     </div>

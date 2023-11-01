@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.task.a.DTO.LoadMedDTO;
 import com.task.a.DTO.MedicationDTO;
 import com.task.a.Entity.Medication;
 import com.task.a.Service.DroneService;
@@ -38,6 +39,11 @@ public class MedicationController {
         Medication savedMedication = medicationService.loadmedication(medicationDTO, serial_number);
         return ResponseEntity.ok(savedMedication);
     }
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/load")
+	public Medication loadmedication(@RequestBody LoadMedDTO loadMedDTO) {
+		return medicationService.loadmedicationnew(loadMedDTO) ;
+	}
 	//veiw all medications
 	@GetMapping("/get_medications")
 	public List<MedicationDTO> getMedication() {

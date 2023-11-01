@@ -10,7 +10,7 @@ class NavBar extends Component {
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">Home</a>
                     <a class="navbar-brand" href="/drone">Drone</a>
-                    <a class="navbar-brand" href="/loadmedication">Load Medication</a>
+                    <a class="navbar-brand" href="/loadmedications">Load Medication</a>
                 </div>
                 </nav>
 
