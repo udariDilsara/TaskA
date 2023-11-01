@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { loadMedications } from "../dummydata"; 
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 const ModelEnum = {
    
@@ -12,7 +12,7 @@ const ModelEnum = {
   // Add more enum values as needed
 };
 export default function LoadMedications() {
-  let navigate =useNavigate();
+  //let navigate =useNavigate();
   const [selectedMedication, setSelectedMedication] = useState(null);
   const [selectedDrone, setSelectedDrone] = useState(
     {serial_number: 0,
@@ -70,7 +70,7 @@ export default function LoadMedications() {
         console.log(dataToSend);
       try {
         const response = await axios.post("http://localhost:8085/api/v1/medication/load", dataToSend);
-        navigate("/");
+        //navigate("/");
         setLoadedData(response.data);
       } catch (error) {
         console.error("Error loading medication:", error);
@@ -79,7 +79,9 @@ export default function LoadMedications() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ backgroundImage: `url(../drone.jpg)`,  backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center', }}>
       
       <div className="py-4">
         <table className="table border shadow">
@@ -108,26 +110,35 @@ export default function LoadMedications() {
                   />
                 </td>
               </tr>
-              
-                
-
-
-
             ))}
           </tbody>
         </table>
-        <div>
-          <p>Selected Medication: {selectedMedication ? selectedMedication.name : "None selected"}</p>
+        <div class="container overflow-hidden">
+          <div class="container" >
+            <div class="row align-items-center" >
+              <div class=" col p-3 border bg-light">
+                <div><p >Selected Medication: {selectedMedication ? selectedMedication.name : "None selected"}</p></div>
+                <div class="row justify-content-around">
+                < div class="col" ><p >Drone Serial Number: {selectedDrone ? selectedDrone.serial_number : "None selected"}</p></div>
+                  <div class="col" ><button onClick={handleSelectDrone} class="btn btn-outline-primary ">Select Drone</button></div>  
+                </div>
+                </div>
+              </div> 
+            </div>
+          </div> 
+          <div class="container" >
+            <div class="row align-items-center" >
+              <div >
+                <div class="row justify-content-around" >  
+                <button onClick={handleLoad} class="btn btn btn-success"  >Load</button>
+              </div>
+            </div>  
         </div>
-        <div><button onClick={handleSelectDrone}>Select Drone</button></div>
-        <p>Selected drone: {selectedDrone ? selectedDrone.serial_number : "None selected"}</p>
         <div>
-            <button onClick={handleLoad}  >Load</button>
-        </div>
-        <div>
-          {loadedData && <p>Data Loaded: {JSON.stringify(loadedData)}</p>}
+            {loadedData && <p>Data Loaded: {JSON.stringify(loadedData)}</p>}
         </div>
       </div>
     </div>
+  </div>
   );
 }

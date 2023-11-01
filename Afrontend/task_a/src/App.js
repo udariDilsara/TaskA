@@ -10,13 +10,13 @@ import Footer from './Components/Footer';
 import AddDrones from './Components/AddDrones';
 import LoadMedications from './Components/LoadMedications';
 //import SelectDrone from './Components/SelectDrone';
-import MedicationTable from './Components/MedicationTable';
+
 function App() {
   return (
     <>
     <Router>
 
-      <div className='container'> 
+      <div> 
           <NavBar/>
           <div className='container'>
               <Routes>
@@ -25,7 +25,7 @@ function App() {
                 
                 <Route path="/loadmedications" element={<LoadMedications />} />
                 <Route exact path="/addrones" element={<AddDrones />} />
-                <Route exact path="/medicationtable" element={<MedicationTable/>} />
+                
                 <Route path="/availabledrone" element={<AvailableDrone />} />
               </Routes>
           </div>
